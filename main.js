@@ -103,7 +103,7 @@ function updateCounterUI( field, time, title = undefined )
 
 function WorkTime( hours = undefined, minutes = undefined, seconds = undefined )
 {
-    this.hours = hours;
-    this.minutes = minutes;
-    this.seconds = seconds;
+    this.hours = hours > 0 ? hours : 0;
+    this.minutes = minutes > 0 ? minutes : 0;
+    this.seconds = seconds > 0 ? seconds : 0;
 }
