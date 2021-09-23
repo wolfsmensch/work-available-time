@@ -85,9 +85,9 @@ function updateCounterUI( field, time, title = undefined )
 
     if ( ( time.hours != undefined ) && ( time.minutes != undefined ) )
     {
-        textHours = time.hours > 10 ? time.hours : '0' + String( time.hours );
-        textMinutes = time.minutes > 10 ? time.minutes : '0' + String( time.minutes );
-        textSeconds = time.seconds > 10 ? time.seconds : '0' + String( time.seconds );
+        textHours = time.hours >= 10 ? time.hours : '0' + String( time.hours );
+        textMinutes = time.minutes >= 10 ? time.minutes : '0' + String( time.minutes );
+        textSeconds = time.seconds >= 10 ? time.seconds : '0' + String( time.seconds );
 
         if ( title != undefined )
         {
