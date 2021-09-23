@@ -1,20 +1,21 @@
 const COUNTER_UPDATE_TIMEOUT = 500;
 const HEAD_TITLE_POSTFIX = ' - workTime';
 
+const HTML_QUERY_TITLE = 'head title';
+const HTML_QUERY_COUNTER_BOX = '#counter-box';
+
 window.addEventListener( 'DOMContentLoaded', handleUI );
 
 function handleUI()
 {
-    let headTitleElement = document.querySelector( 'head title' );
     let fieldEndTime = document.querySelector( '#end-time' );
-    let fieldAvailableTime = document.querySelector( '#counter-box' );
 
     let targetTime = new getTargetTime( fieldEndTime.value );
     fieldEndTime.addEventListener( 'change', ( event ) => { targetTime = getTargetTime( event.target.value ) } );
 
     setTimeout( function updateCounter() {
 
-        updateCounterUI( fieldAvailableTime, getAvailableTime( targetTime ), headTitleElement );
+        updateCounterUI( getAvailableTime( targetTime ) );
         setTimeout( updateCounter, COUNTER_UPDATE_TIMEOUT );
 
     }, 0 );
@@ -77,28 +78,31 @@ function getAvailableTime( endTime )
     );
 }
 
-function updateCounterUI( field, time, title = undefined )
+function updateCounterUI( time )
+{ 
+    let headTitleElement = document.querySelector( HTML_QUERY_TITLE );
+    let fieldAvailableTime = document.querySelector( HTML_QUERY_COUNTER_BOX );
+
+    updateCounterTitleTUI( headTitleElement, time );
+    updateCounterTimerUI( fieldAvailableTime, time );
+}
+
+function updateCounterTimerUI( field, time )
 {
-    let textHours = '--';
-    let textMinutes = '--';
-    let textSeconds = '--';
+    field.querySelector( '.hours' ).innerText = time.elementToText( time.hours );
+    field.querySelector( '.minutes' ).innerText = time.elementToText( time.minutes );
+    field.querySelector( '.seconds' ).innerText = time.elementToText( time.seconds );
+}
 
-    if ( ( time.hours != undefined ) && ( time.minutes != undefined ) )
+function updateCounterTitleTUI( field, time )
+{
+    let textHours = time.elementToText( time.hours );
+    let textMinutes = time.elementToText( time.minutes );
+
+    if ( field != undefined )
     {
-        textHours = time.hours >= 10 ? time.hours : '0' + String( time.hours );
-        textMinutes = time.minutes >= 10 ? time.minutes : '0' + String( time.minutes );
-        textSeconds = time.seconds >= 10 ? time.seconds : '0' + String( time.seconds );
-
-        if ( title != undefined )
-        {
-            title.innerText = `${textHours}:${textMinutes} ${HEAD_TITLE_POSTFIX}`;
-        }
+        field.innerText = `${textHours}:${textMinutes} ${HEAD_TITLE_POSTFIX}`;
     }
-
-    field.querySelector( '.hours' ).innerText = textHours;
-    field.querySelector( '.minutes' ).innerText = textMinutes;
-    field.querySelector( '.seconds' ).innerText = textSeconds;
-
 }
 
 function WorkTime( hours = undefined, minutes = undefined, seconds = undefined )
@@ -106,4 +110,14 @@ function WorkTime( hours = undefined, minutes = undefined, seconds = undefined )
     this.hours = hours > 0 ? hours : 0;
     this.minutes = minutes > 0 ? minutes : 0;
     this.seconds = seconds > 0 ? seconds : 0;
+
+    this.elementToText = function ( time )
+    {
+        if ( ( time == undefined ) || ( time < 0 ) )
+        {
+            return '--';
+        }
+
+        return time >= 10 ? time : '0' + String( time );
+    }
 }
