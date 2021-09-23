@@ -96,12 +96,9 @@ function updateCounterTimerUI( field, time )
 
 function updateCounterTitleTUI( field, time )
 {
-    let textHours = time.elementToText( time.hours );
-    let textMinutes = time.elementToText( time.minutes );
-
     if ( field != undefined )
     {
-        field.innerText = `${textHours}:${textMinutes} ${HEAD_TITLE_POSTFIX}`;
+        field.innerText = `${time.toHumanText()} ${HEAD_TITLE_POSTFIX}`;
     }
 }
 
@@ -119,5 +116,25 @@ function WorkTime( hours = undefined, minutes = undefined, seconds = undefined )
         }
 
         return time >= 10 ? time : '0' + String( time );
+    }
+
+    this.toHumanText = function ()
+    {
+        if ( this.hours > 0 )
+        {
+            return `${this.elementToText(this.hours)}:${this.elementToText(this.minutes)}`;
+        }
+        else if ( this.minutes > 0 )
+        {
+            return `${this.minutes} min`;
+        }
+        else if ( this.seconds > 0 )
+        {
+            return `${this.seconds} sec`;
+        }
+        else
+        {
+            return 'Finish';
+        }
     }
 }
