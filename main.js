@@ -1,17 +1,37 @@
 const COUNTER_UPDATE_TIMEOUT = 500;
 const HEAD_TITLE_POSTFIX = ' - workTime';
 
+const HTML_QUERY_END_TIME = '#end-time';
 const HTML_QUERY_TITLE = 'head title';
 const HTML_QUERY_COUNTER_BOX = '#counter-box';
+
+const LOCAL_STORAGE_END_TIME_KEY = 'endTime';
 
 window.addEventListener( 'DOMContentLoaded', handleUI );
 
 function handleUI()
 {
-    let fieldEndTime = document.querySelector( '#end-time' );
+    let fieldEndTime = document.querySelector( HTML_QUERY_END_TIME );
 
-    let targetTime = new getTargetTime( fieldEndTime.value );
-    fieldEndTime.addEventListener( 'change', ( event ) => { targetTime = getTargetTime( event.target.value ) } );
+    let targetTime = getTargetTime( fieldEndTime.value );
+    console.log( targetTime );
+    if ( targetTime.hours == undefined )
+    {
+        targetTime = getLocalTime();
+        if ( validateTime( targetTime.hours, targetTime.minutes ) )
+        {
+            setUITargetTime( `${targetTime.hours}:${targetTime.minutes}` );
+        }
+    }
+
+    fieldEndTime.addEventListener( 'change', ( event ) => { 
+        targetTime = getTargetTime( event.target.value );
+
+        if ( validateTime( targetTime.hours, targetTime.minutes ) )
+        {
+            saveLocalTime( targetTime );
+        }
+    });
 
     setTimeout( function updateCounter() {
 
@@ -44,12 +64,12 @@ function getTargetTime( timeText )
 
 function validateTime( hours, minutes )
 {
-    if ( ( hours > 23 ) || ( hours < 0 ) )
+    if ( ( hours == undefined ) || ( hours > 23 ) || ( hours < 0 ) )
     {
         return false;
     }
 
-    if ( ( minutes > 59 ) || ( minutes < 0 ) )
+    if ( (minutes == undefined) || ( minutes > 59 ) || ( minutes < 0 ) )
     {
         return false;
     }
@@ -102,12 +122,38 @@ function updateCounterTitleTUI( field, time )
     }
 }
 
+function setUITargetTime( timeString )
+{
+    let editFields = document.querySelector( HTML_QUERY_END_TIME );
+    if ( editFields != undefined )
+    {
+        editFields.value = timeString;
+    }
+}
+
+function saveLocalTime( time )
+{
+    if ( ( time.hours == undefined ) || ( time.minutes == undefined ) )
+    {
+        return;
+    }
+
+    localStorage.setItem( LOCAL_STORAGE_END_TIME_KEY, `${time.hours}:${time.minutes}` );
+}
+
+function getLocalTime()
+{
+    let localTime = localStorage.getItem( LOCAL_STORAGE_END_TIME_KEY );
+    if ( ( localTime == null ) || ( localTime == undefined ) )
+    {
+        return new WorkTime();
+    }
+    
+    return getTargetTime( localTime );
+}
+
 function WorkTime( hours = undefined, minutes = undefined, seconds = undefined )
 {
-    this.hours = hours > 0 ? hours : 0;
-    this.minutes = minutes > 0 ? minutes : 0;
-    this.seconds = seconds > 0 ? seconds : 0;
-
     this.elementToText = function ( time )
     {
         if ( ( time == undefined ) || ( time < 0 ) )
@@ -137,4 +183,18 @@ function WorkTime( hours = undefined, minutes = undefined, seconds = undefined )
             return 'Finish';
         }
     }
+
+    this.correctTime = function( timeElement )
+    {
+        if ( timeElement == undefined )
+        {
+            return undefined;
+        }
+
+        return timeElement > 0 ? timeElement : 0;
+    }
+
+    this.hours = this.correctTime( hours );
+    this.minutes = this.correctTime( minutes );
+    this.seconds = this.correctTime( seconds );
 }
