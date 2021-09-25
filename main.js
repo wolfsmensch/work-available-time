@@ -64,17 +64,17 @@ function getAvailableTime( endTime )
         return new WorkTime();
     }
 
-    let currentDateTime = new Date();
-    let endDateTime = new Date();
+    let currentDateTime = moment();
+    let endDateTime = moment();
 
-    endDateTime.setHours( endTime.hours, endTime.minutes );
+    endDateTime.hour( endTime.hours ).minute( endTime.minutes ).second( 0 );
 
-    let diffTime = new Date( endDateTime - currentDateTime );
+    let diffTime =  moment.duration( endDateTime.diff( currentDateTime ) );
 
     return new WorkTime( 
-        Math.floor(diffTime / 3.6e6),
-        Math.floor((diffTime % 3.6e6) / 6e4),
-        Math.floor((diffTime % 6e4) / 1000)
+        diffTime.hours(),
+        diffTime.minutes(),
+        diffTime.seconds()
     );
 }
 
