@@ -1,6 +1,6 @@
 {
-    "name": "WorkTime",
-    "short_name": "WorkTime",
+    "name": "COSAW",
+    "short_name": "COSAW",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -15,7 +15,7 @@
     ],
     "start_url": "/?source=pwa",
     "scope": "/",
-    "theme_color": "#ffffff",
+    "theme_color": "#e57373",
     "background_color": "#ffffff",
     "display": "standalone",
     "description": "Work time tracking app"
