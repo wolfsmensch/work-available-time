@@ -1,3 +1,5 @@
+'use strict';
+
 const COUNTER_UPDATE_TIMEOUT = 500;
 const HEAD_TITLE_POSTFIX = ' - workTime';
 
@@ -14,13 +16,12 @@ function handleUI()
     let fieldEndTime = document.querySelector( HTML_QUERY_END_TIME );
 
     let targetTime = getTargetTime( fieldEndTime.value );
-    console.log( targetTime );
     if ( targetTime.hours == undefined )
     {
         targetTime = getLocalTime();
         if ( validateTime( targetTime.hours, targetTime.minutes ) )
         {
-            setUITargetTime( `${targetTime.hours}:${targetTime.minutes}` );
+            setUITargetTime( `${targetTime.toShortString()}` );
         }
     }
 
@@ -138,7 +139,7 @@ function saveLocalTime( time )
         return;
     }
 
-    localStorage.setItem( LOCAL_STORAGE_END_TIME_KEY, `${time.hours}:${time.minutes}` );
+    localStorage.setItem( LOCAL_STORAGE_END_TIME_KEY, `${time.toShortString()}` );
 }
 
 function getLocalTime()
@@ -192,6 +193,11 @@ function WorkTime( hours = undefined, minutes = undefined, seconds = undefined )
         }
 
         return timeElement > 0 ? timeElement : 0;
+    }
+    
+    this.toShortString = function()
+    {
+        return this.elementToText( this.hours ) + ':' + this.elementToText( this.minutes );
     }
 
     this.hours = this.correctTime( hours );
