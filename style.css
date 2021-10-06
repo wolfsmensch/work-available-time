@@ -58,6 +58,11 @@ header h1 {
     text-align: center;
 }
 
+input[name="end-time"]
+{
+    margin-bottom: 20px;
+}
+
 .title {
     color: var(--sec-text-color);
     font-size: .8em;
@@ -65,4 +70,40 @@ header h1 {
 
 .counter {
     color: var(--primary-color);
+    font-size: 1.5em;
+}
+
+.presets .side {
+    display: inline-block;
+}
+
+.presets button {
+    cursor: pointer;
+    color: var(--sec-text-color);
+    background: transparent;
+    border: 1px solid var(--sec-text-color);
+    border-radius: 5px;
+    padding: 10px 5px;
+    font-size: .5em;
+    transition: all .05s linear;
+}
+
+.presets button:hover,
+.presets button:active {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.presets button:active {
+    transform: scale(.85);
+}
+
+@media all and (max-width: 767px) {
+    .presets button {
+        font-size: .45em;
+    }
+
+    .presets .side:first-child {
+        margin-bottom: 2px;
+    }
 }

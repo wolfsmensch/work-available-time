@@ -27,14 +27,24 @@
     <main>
         <article class="form">
             <div class="row">
-                <input type="text" name="end-time" id="end-time" placeholder="17:30">
-            </div>
-            <div class="row">
-                <div class="title">Осталось на работу</div>
-            </div>
-            <div class="row">
                 <div class="counter" id="counter-box">
                     <span class="hours">--</span>&nbsp;:&nbsp;<span class="minutes">--</span>&nbsp;:&nbsp;<span class="seconds">--</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title">Время окончания работы</div>
+            </div>
+            <div class="row">
+                <input type="text" name="end-time" id="end-time" placeholder="17:30">
+                <div class="presets">
+                    <div class="side">
+                        <button data-direction="sub" data-value="30">-30 мин</button>
+                        <button data-direction="sub" data-value="15">-15 мин</button>
+                    </div>
+                    <div class="side">
+                        <button data-direction="add" data-value="15">+15 мин</button>
+                        <button data-direction="add" data-value="30">+30 мин</button>
+                    </div>
                 </div>
             </div>
         </article>
