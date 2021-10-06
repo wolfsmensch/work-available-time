@@ -158,9 +158,13 @@ function Time( hours = undefined, minutes = undefined, seconds = undefined )
 {
     this.elementToText = function ( time )
     {
-        if ( ( time == undefined ) || ( time < 0 ) )
+        if ( time == undefined )
         {
             return '--';
+        }
+        else if ( time < 0 )
+        {
+            time = 0;
         }
 
         return time >= 10 ? time : '0' + String( time );
@@ -188,7 +192,7 @@ function Time( hours = undefined, minutes = undefined, seconds = undefined )
 
     this.correctTime = function( timeElement )
     {
-        if ( timeElement == undefined )
+        if ( ( timeElement == undefined ) || ( timeElement < 0 ) )
         {
             return undefined;
         }
