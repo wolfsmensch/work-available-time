@@ -1,7 +1,7 @@
 'use strict';
 
 const COUNTER_UPDATE_TIMEOUT = 500;
-const HEAD_TITLE_POSTFIX = ' - Time';
+const HEAD_TITLE_POSTFIX = ' - Priority Hour';
 
 const HTML_QUERY_END_TIME = '#end-time';
 const HTML_QUERY_TITLE = 'head title';
