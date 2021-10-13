@@ -1,11 +1,18 @@
 :root {
     --primary-color: #e57373;
+    --sec-color: #eaecee;
     --primary-text-color: #e57373;
     --sec-text-color: #9e9e9e;
+    --background-color: #fff;
     --header-height: 5vh;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
+    background-color: var(--background-color);
     font-size: 2em;
     font-family: sans-serif;
 }
@@ -13,12 +20,16 @@ body {
 header {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
-    width: 100vw;
+    width: 55vw;
     height: var(--header-height);
     min-height: 60px;
+
+    margin: auto;
+
+    border-bottom: 1px solid var(--sec-color);
 }
 
 main {
@@ -38,7 +49,7 @@ main {
 
 header h1 {
     color: var(--primary-text-color);
-    font-size: 1em;
+    font-size: .8em;
     text-transform: uppercase;
     margin: 0;
 }
@@ -46,6 +57,14 @@ header h1 {
 .row {
     padding: .15em 0;
     margin-bottom: 20px;
+}
+
+.row:last-child {
+    margin-bottom: 0;
+}
+
+.block {
+    display: block;
 }
 
 .form input[type="text"]

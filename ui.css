@@ -1,0 +1,118 @@
+/* Controls */
+.controls .control {
+    position: relative;
+    z-index: 10;
+}
+
+.control-button {
+    cursor: pointer;
+    display: block;
+    transition: all .15s linear;
+}
+
+.control-button>.icon {
+    width: 32px;
+    height: 32px;
+}
+
+.control-button:hover, .control-button:active {
+    transform: scale(1.15);
+}
+
+.control-body {
+    display: none;
+
+    position: absolute;
+    top: 42px;
+    right: 0;
+    width: 300px;
+
+    color: var(--sec-text-color);
+    background: var(--background-color);
+
+    padding: 10px;
+    border-radius: 5px;
+
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
+
+    font-size: .45em;
+    font-weight: 500;
+
+    z-index: 10;
+}
+
+.control-body .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+
+    border-bottom: 1px solid var(--sec-color);
+}
+
+.control-body .row:last-child {
+    border-bottom: none;
+}
+
+.control-switch:checked+.control-body {
+    display: block;
+}
+
+.text-label {
+    display: inline-block;
+}
+
+/* Switch element */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #e57373;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #e57373;
+}
+
+input:checked+.slider:before {
+    transform: translateX(17px);
+}
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}

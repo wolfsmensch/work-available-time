@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ui.css">
 
     <script src="moment.min.js"></script>
     <script src="main.js"></script>
@@ -24,6 +25,34 @@
 <body>
     <header>
         <h1>Priority Hour</h1>
+
+        <div class="controls">
+            <div class="control">
+                <label for="sound" class="control-button">
+                    <img class="icon" src="icons/volume.svg" alt="Звук">
+                </label>
+                <input class="control-switch" type="checkbox" name="sound" id="sound" hidden>
+                <div class="control-body">
+                    <div class="row">
+                        <label class="block" for="sound-switch">Звук окончания времени</label>
+                        <label class="block switch">
+                            <input type="checkbox" id="sound-switch" hidden>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="selector">
+                            <select name="sound-type" id="sound-type">
+                                <option value="1">Звук 1</option>
+                                <option value="1">Звук 1</option>
+                                <option value="1">Звук 1</option>
+                            </select>
+                        </div>
+                        <img src="icons/play.svg" alt="Проверить">                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
     <main>
         <article class="form">
