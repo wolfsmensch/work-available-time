@@ -123,3 +123,13 @@ input[name="end-time"]
         margin-bottom: 2px;
     }
 }
+
+@media (orientation: portrait) {
+
+    header {
+        width: 100vw;
+        padding: 0 10px;
+        border-bottom: none;
+    }
+
+}
