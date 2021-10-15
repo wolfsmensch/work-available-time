@@ -33,6 +33,9 @@
                 </label>
                 <input class="control-switch" type="checkbox" name="sound" id="sound" hidden>
                 <div class="control-body">
+                    <div class="close">
+                        <img class="icon" src="icons/x.svg" alt="Закрыть">
+                    </div>
                     <div class="row">
                         <label class="block" for="sound-switch">Звук окончания времени</label>
                         <label class="block switch">
@@ -40,15 +43,12 @@
                             <span class="slider round"></span>
                         </label>
                     </div>
-                    <div class="row">
-                        <div class="selector">
-                            <select name="sound-type" id="sound-type">
-                                <option value="1">Звук 1</option>
-                                <option value="1">Звук 1</option>
-                                <option value="1">Звук 1</option>
-                            </select>
-                        </div>
-                        <img src="icons/play.svg" alt="Проверить">                        
+                    <div class="row sound-selector">
+                        <select name="sound-type" id="sound-type">
+                            <option value="1">Звук 1</option>
+                            <option value="1">Звук 1</option>
+                            <option value="1">Звук 1</option>
+                        </select>               
                     </div>
                 </div>
             </div>
