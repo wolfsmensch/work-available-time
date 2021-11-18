@@ -46,7 +46,7 @@ class Time {
 
     static fromText( timeText )
     {
-        if ( timeText.length > 0 )
+        if ( ( timeText != undefined ) && ( timeText.length > 0 ) )
         {
             let timeElements = timeText.trim().split( ':' );
             if ( timeElements.length == 2 )
