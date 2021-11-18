@@ -44,7 +44,7 @@ class TimerUI {
 
     _updatePageTitle( time )
     {
-        this._pageTitle = `${time.toHumanText()} ${this._pageTitlePostfix}`;
+        this._pageTitle.innerText = `${time.toHumanText()} ${this._pageTitlePostfix}`;
     }
 
     set endTime( value )
