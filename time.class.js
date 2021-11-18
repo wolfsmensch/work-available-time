@@ -44,6 +44,41 @@ class Time {
         return timeElement > 0 ? timeElement : 0;
     }
 
+    static fromText( timeText )
+    {
+        if ( timeText.length > 0 )
+        {
+            let timeElements = timeText.trim().split( ':' );
+            if ( timeElements.length == 2 )
+            {
+                timeElements[0] = Number( timeElements[0] );
+                timeElements[1] = Number( timeElements[1] );
+
+                if ( this.isValid( timeElements[0], timeElements[1] ) )
+                {
+                    return new this( timeElements[0], timeElements[1] );
+                }
+            }
+        }
+
+        return new this();
+    }
+
+    static isValid( hours, minutes )
+    {
+        if ( ( hours == undefined ) || ( hours > 23 ) || ( hours < 0 ) )
+        {
+            return false;
+        }
+
+        if ( (minutes == undefined) || ( minutes > 59 ) || ( minutes < 0 ) )
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     get hours() {
         return this._hours;
     }
