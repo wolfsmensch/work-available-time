@@ -30,7 +30,7 @@ function procPreset( presetBtn, timeField )
         return;
     }
 
-    let targetTime = getTargetTime( timeField.value );
+    let targetTime = Time.fromText( timeField.value );
 
     let endTime = moment();
     endTime.hour( targetTime.hours ).minute( targetTime.minutes ).second( 0 );
