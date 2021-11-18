@@ -6,6 +6,7 @@ const HEAD_TITLE_POSTFIX = ' - Priority Hour';
 const HTML_QUERY_END_TIME = '#end-time';
 const HTML_QUERY_TITLE = 'head title';
 const HTML_QUERY_COUNTER_BOX = '#counter-box';
+const HTML_QUERY_PRESETS = '#time-presets';
 
 window.addEventListener( 'DOMContentLoaded', handleUI );
 
@@ -31,6 +32,9 @@ function handleUI()
             TimeStorage.save( targetTime );
         }
     });
+
+    let presetsBox = new PresetsUI( HTML_QUERY_PRESETS, HTML_QUERY_END_TIME );
+    presetsBox.handleEvents();
 
     setTimeout( function updateCounter() {
 
