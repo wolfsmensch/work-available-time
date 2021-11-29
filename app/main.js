@@ -10,7 +10,7 @@ const HTML_QUERY_END_TIME = '#end-time';
 const HTML_QUERY_COUNTER_BOX = '#counter-box';
 const HTML_QUERY_PRESETS = '#time-presets';
 
-window.addEventListener( 'DOMContentLoaded', () => {
+setTimeout(() => {
     let timerUI = new TimerUI( HTML_QUERY_END_TIME, HTML_QUERY_COUNTER_BOX, HEAD_TITLE_POSTFIX );
     let presetsBox = new PresetsUI( HTML_QUERY_PRESETS, HTML_QUERY_END_TIME );
 
@@ -43,7 +43,9 @@ window.addEventListener( 'DOMContentLoaded', () => {
         setTimeout( updateCounter, COUNTER_UPDATE_TIMEOUT );
 
     }, 0 );
-});
+
+    // TODO: Отключение анимации загрузки
+}, 0);
 
 function getAvailableTime( endTime )
 {
