@@ -1,4 +1,4 @@
-class Time {
+export default class {
     constructor( hours = undefined, minutes = undefined, seconds = undefined )
     {
         this.hours = hours;

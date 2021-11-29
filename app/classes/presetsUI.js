@@ -1,4 +1,6 @@
-class PresetsUI {
+import Time from './time.js';
+
+export default class {
     _presetsBox = undefined;
     _timeField = undefined;
 

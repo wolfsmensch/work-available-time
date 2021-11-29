@@ -1,6 +1,8 @@
+import Time from "./time.js";
+
 const LOCAL_STORAGE_END_TIME_KEY = 'endTime';
 
-class TimeStorage {
+export default class {
     
     static save( time )
     {

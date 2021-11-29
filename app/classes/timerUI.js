@@ -1,6 +1,8 @@
+import {UIError} from "./errors.js";
+
 const HTML_QUERY_TITLE = 'head title';
 
-class TimerUI {
+export default class {
 
     _endTimeField = undefined;
     _pageTitle = undefined;
@@ -56,14 +58,4 @@ class TimerUI {
     {
         return this._endTimeField.value;
     }
-}
-
-class UIError extends Error {
-
-    constructor( message )
-    {
-        super( message );
-        this.name = 'UIError';
-    }
-
 }

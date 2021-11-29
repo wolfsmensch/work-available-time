@@ -1,4 +1,7 @@
-'use strict';
+import Time from "./classes/time.js";
+import TimerUI from "./classes/timerUI.js";
+import PresetsUI from "./classes/presetsUI.js";
+import TimeStorage from "./classes/storage.js";
 
 const COUNTER_UPDATE_TIMEOUT = 500;
 const HEAD_TITLE_POSTFIX = ' - Priority Hour';
