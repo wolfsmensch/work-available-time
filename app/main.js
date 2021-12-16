@@ -9,6 +9,18 @@ const HEAD_TITLE_POSTFIX = ' - Priority Hour';
 const HTML_QUERY_END_TIME = '#end-time';
 const HTML_QUERY_COUNTER_BOX = '#counter-box';
 const HTML_QUERY_PRESETS = '#time-presets';
+const HTML_QUERY_LOADER_WRAPPER = '#loader-wrapper';
+
+window.onload = () => {
+    // Отключение анимации загрузки
+    const loaderWrapper = document.querySelector( HTML_QUERY_LOADER_WRAPPER );
+
+    loaderWrapper.classList.add('hide');
+
+    loaderWrapper.addEventListener('transitionend', () => {
+        loaderWrapper.remove();
+    });
+};
 
 setTimeout(() => {
     let timerUI = new TimerUI( HTML_QUERY_END_TIME, HTML_QUERY_COUNTER_BOX, HEAD_TITLE_POSTFIX );
@@ -43,8 +55,6 @@ setTimeout(() => {
         setTimeout( updateCounter, COUNTER_UPDATE_TIMEOUT );
 
     }, 0 );
-
-    // TODO: Отключение анимации загрузки
 }, 0);
 
 function getAvailableTime( endTime )

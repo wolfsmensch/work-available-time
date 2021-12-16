@@ -18,10 +18,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="ui.css">
 
-    <script src="app/lib/moment.min.js"></script>
+    <script defer src="app/lib/moment.min.js"></script>
     <script type="module" src="app/main.js"></script>
 </head>
 <body>
+    <div id="loader-wrapper">
+        <div class="lds-ripple"><div></div><div></div></div>
+    </div>
+
     <header>
         <h1>Priority Hour</h1>
 
